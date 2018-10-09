@@ -1,0 +1,29 @@
+Option Explicit
+
+Public Sub Main()
+
+Dim tx As String
+
+Dim rs As ADODB.Recordset
+Set rs = New ADODB.Recordset
+Dim notes As String
+With rs
+tx = "SELECT notepad,terminal_id from tterminal WHERE description = 'R1'
+MsgBox tx
+.Open tx,SqlConnection
+
+Do Until .EOF
+	notes = .Fields(0)
+	notes = Replace(notes,"timezone=10","timezone=12")
+	tx = "UPDATE tterminal SET notepad = '"+notes+"' WHERE terminal_id = " + CStr(.Fields(1))
+	MsgBox tx
+	SqlConnection.Execute tx
+.MoveNext
+Loop
+
+End With
+
+
+
+End Sub
+

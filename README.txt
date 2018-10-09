@@ -1,4 +1,3 @@
-# Doodle
 Code snippet Doodles.
 
 Repository to keep for future reference.
